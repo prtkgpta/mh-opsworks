@@ -69,7 +69,7 @@ You must have ruby 2 installed, ideally through something like rbenv or rvm,
 though if your system ruby is >= 2 you should be fine. `./bin/setup` installs
 prerequisites and sets up empty cluster configuration templates.
 
-    git clone git@github.com:harvard-dce/mh-opsworks.git mh-opsworks/
+    git clone https://github.com/harvard-dce/mh-opsworks mh-opsworks/
     cd mh-opsworks
     ./bin/setup # checks for dependencies and sets up template env files
 
