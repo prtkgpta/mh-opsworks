@@ -1,7 +1,9 @@
 module Cluster
-  class RemoteConfigs
+  class RemoteConfigs < Base
     def self.all
-
+      s3_client.list_objects(
+        bucket: stack_custom_json[:cluster_config_bucket_name]
+      ).contents.map(&:key)
     end
 
     def self.find(name)

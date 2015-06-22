@@ -1,15 +1,33 @@
 describe Cluster::RemoteConfigs do
+  include ClientStubHelpers
+  include EnvironmentHelpers
+
   context '.all' do
-    it 'creates the dynamodb table if it does not exist' do
+    it 'returns a list of remotely stored configs in a bucket' do
+      stub_config_to_include(
+        stack: {
+          chef: {
+            custom_json: {
+              cluster_config_bucket_name: 'testbucket'
+            }
+          }
+        }
+      )
 
-    end
+      stub_s3_client do |client|
+        client.stub_responses(
+          :list_objects,
+          {
+            contents: [
+              { key: 'foobar' }
+            ]
+          }
+        )
+      end
 
-    it 'finds the dynamodb table if it exists' do
+      objects = described_class.all
 
-    end
-
-    it 'returns a list of remotely stored configs' do
-
+      expect(objects).to eq ['foobar']
     end
   end
 
