@@ -34,7 +34,7 @@ require './lib/cluster/config_checks/monitoring'
 require './lib/cluster/config_checks/cidr_nfs_parity'
 require './lib/cluster/config_checks/storage'
 require './lib/cluster/config_checks/json_format'
-
+require './lib/cluster/config_checks/bucket_configs'
 
 module Cluster
   class JSONFormatError < StandardError; end
